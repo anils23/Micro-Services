@@ -1,0 +1,52 @@
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+
+
+#resilience4j:
+#  circuitbreaker:                                                 // 01} circuit breaker
+#    instances:
+#      superhero-service:
+#        registerHealthIndicator: true
+#        eventConsumerBufferSize: 10
+#        failureRateThreshold: 50
+#        minimumNumberOfCalls: 5
+#        automaticTransitionFromOpenToHalfOpenEnabled: true
+#        waitDurationInOpenState: 5s
+#        permittedNumberOfCallsInHalfOpenState: 3
+#        slidingWindowSize: 10
+#        slidingWindowType: COUNT_BASED
+#  ratelimiter:                                                   //02} rate limiter
+#   configs:
+#     default:
+#        limit-for-period: 2
+#        limit-refresh-period: 10s
+#        timeout-duration: 0
+#   instances:
+#     superhero-service:  
+#       baseConfig: default   
+#  retry:                                                       // 03} retry
+#   instances:     
+#     superhero-service:
+#      maxAttempts: 5
+#      waitDuration: 10s
+#  timelimiter:                                                // 04} time limiter
+#    instances:
+#      superhero-service:
+#        timeout-duration: 2s
+#        cancel-running-future: true
+
+resilience4j:
+  bulkhead:
+    instances:
+      superhero-service:  
+        max-wait-duration: 1000
+        max-concurrent-calls: 5
