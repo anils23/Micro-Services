@@ -1,15 +1,15 @@
-management:
-  health:
-    circuitbreakers:
-      enabled: true
-  endpoints:
-    web:
-      exposure:
-        include: health
-  endpoint:
-    health:
-      show-details: always
-
+#management:
+#  health:
+#    circuitbreakers:
+#      enabled: true
+#  endpoints:
+#    web:
+#      exposure:
+#        include: health
+#  endpoint:
+#    health:
+#      show-details: always
+#
 
 #resilience4j:
 #  circuitbreaker:                                                 // 01} circuit breaker
@@ -38,15 +38,18 @@ management:
 #     superhero-service:
 #      maxAttempts: 5
 #      waitDuration: 10s
-#  timelimiter:                                                // 04} time limiter
+  
+#resilience4j:                                               
+#  timelimiter:
 #    instances:
-#      superhero-service:
+#       superhero-service:
 #        timeout-duration: 2s
 #        cancel-running-future: true
 
-resilience4j:
-  bulkhead:
-    instances:
-      superhero-service:  
-        max-wait-duration: 1000
-        max-concurrent-calls: 5
+
+#resilience4j:
+#  bulkhead:
+#    instances:
+#      superhero-service:  
+#        max-wait-duration: 1000
+#        max-concurrent-calls: 5
